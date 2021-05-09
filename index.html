@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Dad Jokes Generator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <body>
+        <section>
+            <h1 class="title">Random Dad Jokes Generator</h1>
+            <div class="container">
+                <div class="joke">
+                    <p></p>
+                </div>
+                <button>Get a Dad Joke</button>
+            </div>
+        </section>
+        <script>
+            const button = document.querySelector(".container button");
+            const jokeDiv = document.querySelector(".container .joke p");
+
+            document.addEventListener("DOMContentLoaded", getJoke);
+
+            button.addEventListener("click", getJoke);
+
+            async function getJoke() {
+                const jokeData = await fetch("https://icanhazdadjoke.com/", {
+                    method: "GET",
+                    headers: {
+                        Accept: "application/json",
+                    },
+                });
+                const jokeObj = await jokeData.json();
+                jokeDiv.innerHTML = jokeObj.joke;
+                console.log(jokeData);
+            }
+        </script>
+    </body>
+</body>
+
+</html>
